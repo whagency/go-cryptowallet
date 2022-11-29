@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
 	"strings"
 	"time"
 )
@@ -90,12 +89,6 @@ func (b *Balance) normalizeNumber(fractionNumber uint8) *Balance {
 func NewClient(config *Config) *Client {
 	if config == nil {
 		config = &Config{}
-	}
-	if config.ApiKey == "" {
-		config.ApiKey = os.Getenv("CRYPTO_WALLET_KEY")
-	}
-	if config.ApiUrl == "" {
-		config.ApiUrl = os.Getenv("CRYPTO_WALLET_URL")
 	}
 	client := &Client{
 		ApiKey: config.ApiKey,
@@ -346,6 +339,9 @@ func (c *Client) makeRequest(url string, method string, jsonBody []byte, testRes
 	} else {
 		if c.log.Enable {
 			c.log.Info.Printf("API REQUEST to: %s %s; body: %S", strings.ToUpper(method), url, string(jsonBody))
+			if (jsonBody != nil) {
+				c.log.Info.Printf("API REQUEST body: %S", string(jsonBody))
+			}
 		}
 		data, err := c.apiRequest(url, method, jsonBody)
 		if err != nil {
