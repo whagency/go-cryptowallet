@@ -338,10 +338,7 @@ func (c *Client) makeRequest(url string, method string, jsonBody []byte, testRes
 		respData = data
 	} else {
 		if c.log.Enable {
-			c.log.Info.Printf("API REQUEST to: %s %s; body: %S", strings.ToUpper(method), url, string(jsonBody))
-			if (jsonBody != nil) {
-				c.log.Info.Printf("API REQUEST body: %S", string(jsonBody))
-			}
+			c.log.Info.Printf("API REQUEST to: %s %s; body: %s", strings.ToUpper(method), url, string(jsonBody))
 		}
 		data, err := c.apiRequest(url, method, jsonBody)
 		if err != nil {
