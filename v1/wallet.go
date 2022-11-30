@@ -2,6 +2,7 @@ package cryptowallet
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -368,8 +369,12 @@ func (c *Client) apiRequest(url string, method string, jsonBody []byte) (*Respon
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("X-API-Key", c.ApiKey)
 
+	transportCfg := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
 	client := &http.Client{
-		Timeout: time.Duration(5 * time.Second),
+		Timeout:   time.Duration(5 * time.Second),
+		Transport: transportCfg,
 	}
 	resp, err := client.Do(req)
 	if err != nil {
