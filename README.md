@@ -106,7 +106,7 @@ if err != nil {
 fmt.Println(clientData)
 ```
 
-###### Get balance by token address
+###### Get transactions list
 
 *Arguments* : `page, fromTime, operationType`
 
