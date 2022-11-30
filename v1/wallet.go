@@ -133,7 +133,7 @@ func (c *Client) GetCurrencies() ([]*Currency, error) {
 }
 
 func (c *Client) GetTokens(currencyCode string) ([]*Currency, error) {
-	respData, err := c.makeRequest(fmt.Sprintf("/currencies/%s", currencyCode), methodGet, nil, TestResponseGetTokens)
+	respData, err := c.makeRequest(fmt.Sprintf("/tokens/%s", currencyCode), methodGet, nil, TestResponseGetTokens)
 	if err != nil {
 		return nil, err
 	}
