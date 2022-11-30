@@ -11,44 +11,44 @@ import (
 )
 
 const (
-	methodGet = "GET"
+	methodGet  = "GET"
 	methodPost = "POST"
-	methodPut = "PUT"
+	methodPut  = "PUT"
 )
 
 const (
-	OperationTypeIn = "IN"
-	OperationTypeOut = "OUT"
+	OperationTypeIn           = "IN"
+	OperationTypeOut          = "OUT"
 	OperationTypeCreateWallet = "CREATE_WALLET"
 )
 
 type Config struct {
-	ApiKey string
-	ApiUrl string
-	Test bool
+	ApiKey  string
+	ApiUrl  string
+	Test    bool
 	Logging uint8
 }
 
 type Client struct {
 	ApiKey string
 	ApiUrl string
-	Test bool
-	log logger
+	Test   bool
+	log    logger
 }
 
 type Response struct {
 	StatusCode int
-	Status string `json:"status"`
-	Error string `json:"error"`
-	Message string `json:"message"`
-	Data interface{} `json:"data"`
+	Status     string      `json:"status"`
+	Error      string      `json:"error"`
+	Message    string      `json:"message"`
+	Data       interface{} `json:"data"`
 }
 
 type Currency struct {
-	Code string `json:"currencyCode"`
-	TokenID string `json:"tokenId"`
-	FractionNumber uint8 `json:"fractionNumber"`
-	Enabled bool `json:"enabled"`
+	Code           string `json:"currencyCode"`
+	TokenID        string `json:"tokenId"`
+	FractionNumber uint8  `json:"fractionNumber"`
+	Enabled        bool   `json:"enabled"`
 }
 
 type Address struct {
@@ -56,29 +56,29 @@ type Address struct {
 }
 
 type Balance struct {
-	Hash string `json:"walletId"`
-	Balance uint64 `json:"balance"`
+	Hash         string  `json:"walletId"`
+	Balance      uint64  `json:"balance"`
 	BalanceFloat float64 `json:"-"`
 }
 
 type Transaction struct {
-	ID uint32 `json:"id"`
-	Timestamp string `json:"timestamp"`
-	TimestampLong uint64 `json:"timestampLong"`
-	Currency string `json:"currency"`
-	Amount uint64 `json:"amount"`
-	Type string `json:"type"`
-	DestinationAddress string `json:"destinationAddress"`
-	SourceAddresses []string `json:"sourceAddresses"`
-	IpAddress string `json:"ipAddress"`
+	ID                 uint32   `json:"id"`
+	Timestamp          string   `json:"timestamp"`
+	TimestampLong      uint64   `json:"timestampLong"`
+	Currency           string   `json:"currency"`
+	Amount             uint64   `json:"amount"`
+	Type               string   `json:"type"`
+	DestinationAddress string   `json:"destinationAddress"`
+	SourceAddresses    []string `json:"sourceAddresses"`
+	IpAddress          string   `json:"ipAddress"`
 }
 
 type TransactionsData struct {
-	Transactions []*Transaction `json:"content"`
-	TotalPages uint32 `json:"totalPages"`
-	TotalElements uint32 `json:"totalElements"`
-	Size uint32 `json:"size"`
-	Page uint32 `json:"page"`
+	Transactions  []*Transaction `json:"content"`
+	TotalPages    uint32         `json:"totalPages"`
+	TotalElements uint32         `json:"totalElements"`
+	Size          uint32         `json:"size"`
+	Page          uint32         `json:"page"`
 }
 
 func (b *Balance) normalizeNumber(fractionNumber uint8) *Balance {
@@ -93,8 +93,8 @@ func NewClient(config *Config) *Client {
 	client := &Client{
 		ApiKey: config.ApiKey,
 		ApiUrl: strings.Trim(config.ApiUrl, "/"),
-		Test: config.Test,
-		log: newWalletLogger(config.Logging),
+		Test:   config.Test,
+		log:    newWalletLogger(config.Logging),
 	}
 
 	return client

@@ -12,15 +12,15 @@ const (
 )
 
 const (
-	LoggerFile = 1
+	LoggerFile   = 1
 	LoggerStdout = 2
-	LoggerOff = 0
+	LoggerOff    = 0
 )
 
 type logger struct {
 	Enable bool
-	Info *log.Logger
-	Error *log.Logger
+	Info   *log.Logger
+	Error  *log.Logger
 }
 
 func newWalletLogger(output uint8) logger {
@@ -47,4 +47,3 @@ func newWalletLogger(output uint8) logger {
 
 	return logger
 }
-
