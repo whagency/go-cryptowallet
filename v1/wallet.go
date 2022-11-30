@@ -39,7 +39,7 @@ type Client struct {
 
 type Response struct {
 	StatusCode int
-	Status     string      `json:"status"`
+	Status     interface{} `json:"status"`
 	Error      string      `json:"error"`
 	Message    string      `json:"message"`
 	Data       interface{} `json:"data"`
