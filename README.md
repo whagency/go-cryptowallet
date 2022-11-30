@@ -1,7 +1,6 @@
 # Go cryptowallet API client
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/whagency/go-cryptowallet/master/LICENSE.md)
-[![Build Status](https://travis-ci.org/whagency/go-cryptowallet.svg?branch=master)](https://travis-ci.org/whagency/go-cryptowallet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/whagency/go-cryptowallet?)](https://goreportcard.com/report/github.com/whagency/go-cryptowallet)
 [![GoDoc](https://godoc.org/github.com/whagency/go-cryptowallet?status.svg)](https://godoc.org/github.com/whagency/go-cryptowallet)
 
